@@ -25,21 +25,59 @@
         </div>
         <div class="col-md-6 my-auto">
 
-          <ul>행복</ul>
+
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#HappyKeyword"> 행복</a>
+
+          <div class="collapse" id="HappyKeyword">
+            <div class="card card-body">
+              {% for keyword in HaKeyword %}
+                <p> {{ keyword }}</p>
+              {% endfor %}
+            </div>
+          </div>
+
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: {{ Happy }}%" aria-valuenow="{{ Happy }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <ul>슬픔</ul>
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#SadKeyword"> 슬픔</a>
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: {{ Sad }}%" aria-valuenow="{{ Sad }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <ul>놀람</ul>
+
+          <div class="collapse" id="SadKeyword">
+            <div class="card card-body">
+              {% for keyword in SaKeyword %}
+                <p> {{ keyword }}</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#SurpriseKeyword"> 놀람</a>
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: {{ Surprise }}%" aria-valuenow="{{ Surprise }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <ul>분노</ul>
+
+          <div class="collapse" id="SurpriseKeyword">
+            <div class="card card-body">
+              {% for keyword in SuKeyword %}
+                <p> {{ keyword }}</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#AngerKeyword"> 분노</a>
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: {{ Anger }}%" aria-valuenow="{{ Anger }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <div class="collapse" id="AngerKeyword">
+            <div class="card card-body">
+              {% for keyword in AnKeyword %}
+                <p> {{ keyword }}</p>
+              {% endfor %}
+            </div>
           </div>
 
 
