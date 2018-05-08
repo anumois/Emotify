@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="kr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Emotify</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/display.css">
+  </head>
+  <body>
+    <div class="Emotify-header px-3 py-5 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Emotify</h1>
+    </div>
+
+    <div class="Display-Navigator px-5 py-5 mx-auto">
+      <h2 class="Display-LocationTxt"> {{ Location }} </h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 px-5">
+          <object class = "Display-LocationImg" type="image/svg+xml" data="/static/image/sKor.svg"></object>
+        </div>
+        <div class="col-md-6 my-auto">
+
+          <ul>행복</ul>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Happy }}%" aria-valuenow="{{ Happy }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <ul>슬픔</ul>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Sad }}%" aria-valuenow="{{ Sad }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <ul>놀람</ul>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Surprise }}%" aria-valuenow="{{ Surprise }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <ul>분노</ul>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Anger }}%" aria-valuenow="{{ Anger }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  </body>
+</html>
