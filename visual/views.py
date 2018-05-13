@@ -1,19 +1,18 @@
 from django.shortcuts import render
 import requests
 from . import visualLib
-
+from . import serve
 # Create your views here.
 def index(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         try:
-            pass
+            return display(request,request.GET['indexLocation'])
         except KeyError:
             return render(request, 'index.html')
     return render(request, 'index.html')
 
-def display(request):
-    r = requests.get('http://127.0.0.1:8000/api/getInfo')
-    jsonResult = r.json()
+def display(request, indexLocation):
+    jsonResult = serve.serverOut(indexLocation)
     context = visualLib.copyJson2Context(jsonResult)
 
     if context['result'] != False:
