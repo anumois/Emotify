@@ -62,19 +62,19 @@ def getEE(curMonth, curDay, Location1, Location2):
     try:
         ETL = EmotifyTimeList.objects.get(ETLMonth=curMonth, ETLDay = curDay)
     except ObjectDoesNotExist:
-        print(str(curMonth) + " " + str(curDay) + 'No such ETL')
+        #print(str(curMonth) + " " + str(curDay) + 'No such ETL')
         return False
 
     try:
         ELL = EmotifyLocationList.objects.get(ELLLocation1 = Location1, ELLLocation2 = Location2)
     except ObjectDoesNotExist:
-        print(str(Location1) + " " + str(Location2) + 'No such ELL')
+        #print(str(Location1) + " " + str(Location2) + 'No such ELL')
         return False
 
     try:
         EE = EmotifyElement.objects.get(EEDate = ETL, EELocation = ELL)
     except ObjectDoesNotExist:
-        print('No such EE')
+        #print('No such EE')
         return False
 
     return EE
@@ -107,10 +107,10 @@ def serverOut(location, startTime, endTime):
             Anger = Anger + EE.EEAnger
             for type in [1,2,3,4]:
                 for DictElem in EmotifyDictionary.objects.filter(EDElement = EE, EDType = type):
-                    print('Type = '+str(type))
+                    #print('Type = '+str(type))
                     iteration = 0
                     for DictEntry in EmotifyDictEntry.objects.filter(EDEContainer = DictElem).order_by('-EDEValue'):
-                        print(DictEntry.EDEValue)
+                        #print(DictEntry.EDEValue)
                         if iteration == 20:
                             break
                         try:
