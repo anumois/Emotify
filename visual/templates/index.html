@@ -22,23 +22,45 @@
         <div class="form-label-group mb-2">
           <label for="indexLocation">지역을 선택해주세요</label>
             <select class="form-control" id="indexLocation" name="indexLocation">
-              <option>전국</option>
-              <option>서울특별시</option>
-              <option>대전광역시</option>
-              <option>대구광역시</option>
-              <option>부산광역시</option>
-              <option>인천광역시</option>
-              <option>울산광역시</option>
-              <option>세종특별자치시</option>
-              <option>경기도</option>
-              <option>강원도</option>
-              <option>충청북도</option>
-              <option>충청남도</option>
-              <option>전라북도</option>
-              <option>전라남도</option>
-              <option>경상북도</option>
-              <option>경상남도</option>
-              <option>제주특별자치도</option>
+              <option value="전국">전국</option>
+              <option value="서울">서울특별시</option>
+              <option value="대전">대전광역시</option>
+              <option value="대구">대구광역시</option>
+              <option value="부산">부산광역시</option>
+              <option value="인천">인천광역시</option>
+              <option value="울산">울산광역시</option>
+              <option value="세종">세종특별자치시</option>
+              <option value="경기">경기도</option>
+              <option value="강원">강원도</option>
+              <option value="충북">충청북도</option>
+              <option value="충남">충청남도</option>
+              <option value="전북">전라북도</option>
+              <option value="전남">전라남도</option>
+              <option value="경북">경상북도</option>
+              <option value="경남">경상남도</option>
+              <option value="제주">제주특별자치도</option>
+            </select>
+          <select class="form-control" id="indexLocation2" name="indexLocation2">
+            <option value="대통령">대통령</option>
+          </select>
+        </div>
+
+        <div class="form-label-group mb-2">
+          <label for="startTime">시작시간</label>
+            <select class="form-control" id="startTime" name="startTime">
+              {% for timeVal in TimeContext %}
+              <option> {{ timeVal }}</option>
+              {% endfor %}
+            </select>
+
+        </div>
+
+        <div class="form-label-group mb-2">
+          <label for="endTime">종료시간</label>
+            <select class="form-control" id="endTime" name="endTime">
+              {% for timeVal in TimeContext %}
+              <option> {{ timeVal }}</option>
+              {% endfor %}
             </select>
 
         </div>
@@ -52,5 +74,37 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var locationDict = {
+        '강원' : ['도지사', '강릉', '고성', '동해', '삼척', '속초', '양구', '양양', '영월', '원주', '인제', '정선', '철원', '춘천', '태백', '평창', '홍천', '화천', '횡성'],
+        '경기' : ['도지사', '가평', '고양', '과천', '광명', '광주', '구리', '군포', '김포', '남양주', '동두천', '부천', '성남', '수원', '시흥', '안산', '안성', '안양', '양주', '양평', '여주', '연천', '오산', '용인', '의왕', '의정부', '이천', '파주', '평택', '포천', '하남', '화성'],
+        '경남' : ['도지사', '거제', '거창', '고성', '김해', '남해', '밀양', '사천', '산청', '양산', '의령', '진주', '창녕', '창원', '통영', '하동', '함안', '함양', '합천'],
+        '경북' : ['도지사', '경산', '경주', '고령', '구미', '군위', '김천', '문경', '봉화', '상주', '성주', '안동', '영덕', '영양', '영주', '영천', '예천', '울릉', '울진', '의성', '청도', '청도', '청송', '칠곡', '포항'],
+        '전남' : ['도지사', '강진', '고흥', '곡성', '광양', '구례', '나주', '담양', '목포', '무안', '보성', '순천', '신안', '여수', '영광', '영암', '완도', '장성', '장흥', '진도', '함평', '해남', '화순'],
+        '전북' : ['도지사', '고창', '군산', '김제', '남원', '무주', '부안', '순창', '완주', '익산', '임실', '장수', '전주', '정읍', '진안'],
+        '충남' : ['도지사', '계룡', '공주', '금산', '논산', '당진', '보령', '부여', '서산', '서천', '아산', '예산', '천안', '청양', '태안', '홍성'],
+        '충북' : ['도지사', '괴산', '단양', '보은', '영동', '옥천', '음성', '제천', '증평', '진천', '청주', '충주'],
+        '제주' : ['특별자치도지사'],
+        '광주' : ['광역시장'],
+        '대구' : ['광역시장', '달성'],
+        '대전' : ['광역시장'],
+        '부산' : ['광역시장', '기장'],
+        '서울' : ['특별시장'],
+        '울산' : ['광역시장', '울주'],
+        '인천' : ['광역시장', '강화', '옹진'],
+        '세종' : ['특별자치시장'],
+        '전국' : ['대통령']
+      };
+      $(document).change(function() {
+          $("#indexLocation2").empty();
+
+          var lArray = locationDict[$("#indexLocation option:selected").val()];
+
+          for(i=0, len = lArray.length; i < len; i++){
+            $("#indexLocation2").append("<option value="+lArray[i]+">"+lArray[i]+"</option>")
+          }
+
+      });
+    </script>
   </body>
 </html>

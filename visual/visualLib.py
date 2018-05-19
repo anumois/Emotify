@@ -1,24 +1,24 @@
+def regContext(location, sOut):
+    context = sOut
+    try:
+        Happy = sOut['Happy']
+        Sad = sOut['Sad']
+        Surprise = sOut['Surprise']
+        Anger = sOut['Anger']
+        sumEmo = Happy + Sad + Surprise + Anger
+        if sumEmo == 0:
+            return context
+        Happy = int((float(Happy) / float(sumEmo)) * 100)
+        Sad = int((float(Sad) / float(sumEmo)) * 100)
+        Surprise = int((float(Surprise) / float(sumEmo)) * 100)
+        Anger = int((float(Anger) / float(sumEmo)) * 100)
 
-def copyJson2Context(jsonInput):
-    Context = {}
-    if jsonInput['result'] == 'success':
-        try:
-            Context['result'] = True
-            Context['Location'] = jsonInput['Location']
-            Context['Happy'] = jsonInput['Happy']
-            Context['Sad'] = jsonInput['Sad']
-            Context['Surprise'] = jsonInput['Surprise']
-            Context['Anger'] = jsonInput['Anger']
-            Context['HaKeyword'] = jsonInput['HaKeyword']
-            Context['SaKeyword'] = jsonInput['SaKeyword']
-            Context['SuKeyword'] = jsonInput['SuKeyword']
-            Context['AnKeyword'] = jsonInput['AnKeyword']
-            return Context
-        except KeyError:
-            FailContext = {}
-            FailContext['result'] = False
-            return FailContext
-    else:
-        FailContext = {}
-        FailContext['result'] = False
-        return FailContext
+        context['Happy'] = Happy
+        context['Sad'] = Sad
+        context['Surprise'] = Surprise
+        context['Anger'] = Anger
+        context['Location1'] = location[0]
+        context['Location2'] = location[1]
+        return context
+    except KeyError:
+        return False
