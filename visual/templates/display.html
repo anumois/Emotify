@@ -14,68 +14,146 @@
       <h1 class="display-4">Emotify</h1>
     </div>
 
-    <div class="Display-Navigator px-5 py-5 mx-auto">
-      <h2 class="Display-LocationTxt"> {{ Location1 }} {{ Location2 }}</h2>
-    </div>
+
 
     <div class="container">
       <div class="row">
-        <div class="col-md-6 px-5">
-          <object class = "Display-LocationImg" type="image/svg+xml" data="/static/image/sKor.svg"></object>
-        </div>
         <div class="col-md-6 my-auto">
+          <div class="Display-Navigator px-5 py-5 mx-auto">
+            <h2 class="Display-LocationTxt"> {{ scompLocation1 }} {{ scompLocation2 }}</h2>
+          </div>
+          <a class="btn btn-primary" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#scompHappyKeyword"> 행복</a>
 
-
-
-          <a class="btn btn-primary" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#HappyKeyword"> 행복</a>
-
-          <div class="collapse" id="HappyKeyword">
+          <div class="collapse" id="scompHappyKeyword">
             <div class="card card-body">
-              {% for keyword in HaKeyword %}
-                <p> {{ keyword }}</p>
+              {% for keyword in scompHaKeyword %}
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                  {{ keyword.0 }}
+                </button>
+                <br>
               {% endfor %}
             </div>
           </div>
 
           <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Happy }}%" aria-valuenow="{{ Happy }}" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompHappy }}%" aria-valuenow="{{ scompHappy }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#SadKeyword"> 슬픔</a>
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#scompSadKeyword"> 슬픔</a>
           <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Sad }}%" aria-valuenow="{{ Sad }}" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompSad }}%" aria-valuenow="{{ scompSad }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
 
-          <div class="collapse" id="SadKeyword">
+          <div class="collapse" id="scompSadKeyword">
             <div class="card card-body">
-              {% for keyword in SaKeyword %}
-                <p> {{ keyword }}</p>
+              {% for keyword in scompSaKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0 }}
+              </button>
+              <br>
               {% endfor %}
             </div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#SurpriseKeyword"> 놀람</a>
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#scompSurpriseKeyword"> 놀람</a>
           <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Surprise }}%" aria-valuenow="{{ Surprise }}" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompSurprise }}%" aria-valuenow="{{ scompSurprise }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
 
-          <div class="collapse" id="SurpriseKeyword">
+          <div class="collapse" id="scompSurpriseKeyword">
             <div class="card card-body">
-              {% for keyword in SuKeyword %}
-                <p> {{ keyword }}</p>
+              {% for keyword in scompSuKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0 }}
+              </button>
+              <br>
               {% endfor %}
             </div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#AngerKeyword"> 분노</a>
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#scompAngerKeyword"> 분노</a>
           <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ Anger }}%" aria-valuenow="{{ Anger }}" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompAnger }}%" aria-valuenow="{{ scompAnger }}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
 
-          <div class="collapse" id="AngerKeyword">
+          <div class="collapse" id="scompAngerKeyword">
             <div class="card card-body">
-              {% for keyword in AnKeyword %}
-                <p> {{ keyword }}</p>
+              {% for keyword in scompAnKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0 }}
+              </button>
+              <br>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 my-auto">
+          <div class="Display-Navigator px-5 py-5 mx-auto">
+            <h2 class="Display-LocationTxt"> {{ sLocation1 }} {{ sLocation2 }}</h2>
+          </div>
+          <a class="btn btn-primary" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#sHappyKeyword"> 행복</a>
+
+          <div class="collapse" id="sHappyKeyword">
+            <div class="card card-body">
+              {% for keyword in sHaKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0 }}
+              </button>
+
+              <br>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sHappy }}%" aria-valuenow="{{ scompHappy }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#sSadKeyword"> 슬픔</a>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sSad }}%" aria-valuenow="{{ sSad }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <div class="collapse" id="sSadKeyword">
+            <div class="card card-body">
+              {% for keyword in sSaKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0}}
+              </button>
+                <br>
+              {% endfor %}
+            </div>
+          </div>
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#sSurpriseKeyword"> 놀람</a>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sSurprise }}%" aria-valuenow="{{ sSurprise }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <div class="collapse" id="sSurpriseKeyword">
+            <div class="card card-body">
+              {% for keyword in sSuKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0 }}
+              </button>
+                <br>
+              {% endfor %}
+            </div>
+          </div>
+
+          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#sAngerKeyword"> 분노</a>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sAnger }}%" aria-valuenow="{{ sAnger }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <div class="collapse" id="sAngerKeyword">
+            <div class="card card-body">
+              {% for keyword in sAnKeyword %}
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{{ keyword.1 }}">
+                {{ keyword.0 }}
+              </button>
+                <br>
               {% endfor %}
             </div>
           </div>

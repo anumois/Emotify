@@ -38,3 +38,9 @@ class EmotifyDictEntry(models.Model):
     EDEValue     = models.IntegerField(default=0, db_index=True)
     def __str__(self):
         return self.EDEContainer.EDName
+
+class EmotifyTweet(models.Model):
+    ETContainer = models.ForeignKey('EmotifyDictEntry', on_delete = models.CASCADE)
+    ETText = models.CharField(max_length=300, db_index=True)
+    def __str__(self):
+        return str(self.ETContainer)

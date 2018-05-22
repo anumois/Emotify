@@ -32,15 +32,17 @@ def index(request):
 
     if request.method == 'GET':
         try:
-            return display(request,[request.GET['indexLocation'],request.GET['indexLocation2']], request.GET['startTime'], request.GET['endTime'])
+            return display(request,[request.GET['indexLocation'],request.GET['indexLocation2']], [request.GET['CompindexLocation'], request.GET['CompindexLocation2']],request.GET['startTime'], request.GET['endTime'])
         except KeyError:
             return render(request, 'index.html', context)
     return render(request, 'index.html', context)
 
-def display(request, location, startTime, endTime):
+def display(request, location, complocation, startTime, endTime):
     sOut = serve.serverOut(location, startTime, endTime)
-    context = visualLib.regContext(location, sOut)
-    
+    scompOut = serve.serverOut(complocation, startTime, endTime)
+
+    context = visualLib.regContext(location, complocation, sOut, scompOut)
+
     try:
         if context['result'] == 'success':
             return render(request, 'display.html', context)
