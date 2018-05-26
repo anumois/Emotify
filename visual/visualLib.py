@@ -1,13 +1,12 @@
 def regContext(location, complocation, sOut, scompOut):
     context = {'result': 'success'}
-
     try:
         sHappy = sOut['Happy']
         sSad = sOut['Sad']
         sSurprise = sOut['Surprise']
         sAnger = sOut['Anger']
         sumEmo = sHappy + sSad + sSurprise + sAnger
-
+        
         scompHappy = scompOut['Happy']
         scompSad = scompOut['Sad']
         scompSurprise = scompOut['Surprise']
@@ -30,19 +29,32 @@ def regContext(location, complocation, sOut, scompOut):
         context['sSurprise'] = sSurprise
         context['sAnger'] = sAnger
 
-
         context['sHaKeyword'] = []
         for member in sOut['HaKeyword']:
-            context['sHaKeyword'].append([member[0],sOut['HaTweet'][member[0]]])
+            try:
+                context['sHaKeyword'].append([member[0],sOut['HaTweet'][member[0]]])
+            except KeyError:
+                pass
         context['sSaKeyword'] = []
         for member in sOut['SaKeyword']:
-            context['sSaKeyword'].append([member[0],sOut['SaTweet'][member[0]]])
+            try:
+                context['sSaKeyword'].append([member[0],sOut['SaTweet'][member[0]]])
+            except KeyError:
+                pass
+
         context['sSuKeyword'] = []
         for member in sOut['SuKeyword']:
-            context['sSuKeyword'].append([member[0],sOut['SuTweet'][member[0]]])
+            try:
+                context['sSuKeyword'].append([member[0],sOut['SuTweet'][member[0]]])
+            except KeyError:
+                pass
+
         context['sAnKeyword'] = []
         for member in sOut['AnKeyword']:
-            context['sAnKeyword'].append([member[0],sOut['AnTweet'][member[0]]])
+            try:
+                context['sAnKeyword'].append([member[0],sOut['AnTweet'][member[0]]])
+            except KeyError:
+                pass
 
         context['scompHappy'] = scompHappy
         context['scompSad'] = scompSad
@@ -51,16 +63,28 @@ def regContext(location, complocation, sOut, scompOut):
 
         context['scompHaKeyword'] = []
         for member in scompOut['HaKeyword']:
-            context['scompHaKeyword'].append([member[0],scompOut['HaTweet'][member[0]]])
+            try:
+                context['scompHaKeyword'].append([member[0],scompOut['HaTweet'][member[0]]])
+            except KeyError:
+                pass
         context['scompSaKeyword'] = []
         for member in scompOut['SaKeyword']:
-            context['scompSaKeyword'].append([member[0],scompOut['SaTweet'][member[0]]])
+            try:
+                context['scompSaKeyword'].append([member[0],scompOut['SaTweet'][member[0]]])
+            except KeyError:
+                pass
         context['scompSuKeyword'] = []
         for member in scompOut['SuKeyword']:
-            context['scompSuKeyword'].append([member[0],scompOut['SuTweet'][member[0]]])
+            try:
+                context['scompSuKeyword'].append([member[0],scompOut['SuTweet'][member[0]]])
+            except KeyError:
+                pass
         context['scompAnKeyword'] = []
         for member in scompOut['AnKeyword']:
-            context['scompAnKeyword'].append([member[0],scompOut['AnTweet'][member[0]]])
+            try:
+                context['scompAnKeyword'].append([member[0],scompOut['AnTweet'][member[0]]])
+            except KeyError:
+                pass
 
         context['sLocation1'] = location[0]
         context['sLocation2'] = location[1]

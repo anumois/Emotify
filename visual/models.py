@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 
+ETIndex = ['default', 'happy', 'sad', 'surprise', 'anger']
+
 class EmotifyTimeList(models.Model):
     ETLMonth = models.IntegerField(default = 0)
     ETLDay = models.IntegerField(default = 0)
@@ -39,8 +41,31 @@ class EmotifyDictEntry(models.Model):
     def __str__(self):
         return self.EDEContainer.EDName
 
-class EmotifyTweet(models.Model):
-    ETContainer = models.ForeignKey('EmotifyDictEntry', on_delete = models.CASCADE)
+#1: Happy, 2: Sad, 3: Surprise, 4: Anger
+class HappyEmotifyTweet(models.Model):
+    ETContainer = models.ForeignKey('EmotifyLocationList', on_delete = models.CASCADE)
+    ETKey = models.CharField(default = '', max_length=240, db_index=True)
     ETText = models.CharField(max_length=300, db_index=True)
     def __str__(self):
-        return str(self.ETContainer)
+        return 'Happy' + str(self.ETContainer)
+
+class SadEmotifyTweet(models.Model):
+    ETContainer = models.ForeignKey('EmotifyLocationList', on_delete = models.CASCADE)
+    ETKey = models.CharField(default = '', max_length=240, db_index=True)
+    ETText = models.CharField(max_length=300, db_index=True)
+    def __str__(self):
+        return 'Sad' + str(self.ETContainer)
+
+class SurpriseEmotifyTweet(models.Model):
+    ETContainer = models.ForeignKey('EmotifyLocationList', on_delete = models.CASCADE)
+    ETKey = models.CharField(default = '', max_length=240, db_index=True)
+    ETText = models.CharField(max_length=300, db_index=True)
+    def __str__(self):
+        return 'Surprise' + str(self.ETContainer)
+
+class AngerEmotifyTweet(models.Model):
+    ETContainer = models.ForeignKey('EmotifyLocationList', on_delete = models.CASCADE)
+    ETKey = models.CharField(default = '', max_length=240, db_index=True)
+    ETText = models.CharField(max_length=300, db_index=True)
+    def __str__(self):
+        return 'Anger' + str(self.ETContainer)

@@ -1,7 +1,10 @@
-from .models import EmotifyTimeList, EmotifyDictionary, EmotifyLocationList, EmotifyElement, EmotifyDictEntry, EmotifyTweet
+from .models import EmotifyTimeList, EmotifyDictionary, EmotifyLocationList, EmotifyElement, EmotifyDictEntry
+from .models import HappyEmotifyTweet, SadEmotifyTweet, SurpriseEmotifyTweet, AngerEmotifyTweet
 
 from django.core.exceptions import ObjectDoesNotExist
 
+#for debug
+import time
 import operator
 
 Kangwon = ['강원', '도지사', '강릉', '고성', '동해', '삼척', '속초', '양구', '양양', '영월', '원주', '인제', '정선', '철원', '춘천', '태백', '평창', '홍천', '화천', '횡성']
@@ -58,17 +61,11 @@ def parseStartEnd(startTime, endTime):
     else:
         return [(startMonth,startDay), (endMonth,endDay)]
 
-def getEE(curMonth, curDay, Location1, Location2):
+def getEE(curMonth, curDay, ELL):
     try:
         ETL = EmotifyTimeList.objects.get(ETLMonth=curMonth, ETLDay = curDay)
     except ObjectDoesNotExist:
         #print(str(curMonth) + " " + str(curDay) + 'No such ETL')
-        return False
-
-    try:
-        ELL = EmotifyLocationList.objects.get(ELLLocation1 = Location1, ELLLocation2 = Location2)
-    except ObjectDoesNotExist:
-        #print(str(Location1) + " " + str(Location2) + 'No such ELL')
         return False
 
     try:
@@ -101,40 +98,37 @@ def serverOut(location, startTime, endTime):
     SadTweet = {}
     SurpriseTweet = {}
     AngerTweet = {}
-    TweetList = [HappyTweet,SadTweet,SurpriseTweet,AngerTweet]
 
+
+    try:
+        ELL = EmotifyLocationList.objects.get(ELLLocation1 = Location1, ELLLocation2 = Location2)
+    except ObjectDoesNotExist:
+        return {'result':'failed', 'msg':'Invalid Location'}
+
+    start_time = time.time()
     while(True):
+        EE = getEE(curMonth, curDay, ELL)
 
-        EE = getEE(curMonth, curDay, Location1, Location2)
         if EE is not False:
             Happy = Happy + EE.EEHappy
             Sad = Sad + EE.EESad
             Surprise = Surprise + EE.EESurprise
             Anger = Anger + EE.EEAnger
-            for type in [1,2,3,4]:
-                for DictElem in EmotifyDictionary.objects.filter(EDElement = EE, EDType = type):
-                    #print('Type = '+str(type))
-                    iteration = 0
-                    for DictEntry in EmotifyDictEntry.objects.filter(EDEContainer = DictElem).order_by('-EDEValue'):
-                        if iteration == 10:
-                            break
-                        try:
-                            EmotionDict[(DictElem.EDType)-1][DictEntry.EDEKey] = EmotionDict[(DictElem.EDType)-1][DictEntry.EDEKey] + DictEntry.EDEValue
-                        except KeyError:
-                            EmotionDict[(DictElem.EDType)-1][DictEntry.EDEKey] = DictEntry.EDEValue
-                        try:
-                            ETList = EmotifyTweet.objects.filter(ETContainer = DictEntry).order_by('?')
-                            for ob in ETList:
-                                ET = ob
-                                break
-                            TweetList[(DictElem.EDType)-1][DictEntry.EDEKey] = ET.ETText
-                        except ObjectDoesNotExist:
-                            pass
-                        iteration = iteration + 1
+            for DictElem in EmotifyDictionary.objects.filter(EDElement = EE):
+                iteration = 0
+                for DictEntry in EmotifyDictEntry.objects.filter(EDEContainer = DictElem).order_by('EDEValue').reverse():
+                    if iteration == 10:
+                        break
+                    try:
+                        EmotionDict[(DictElem.EDType)-1][DictEntry.EDEKey] = EmotionDict[(DictElem.EDType)-1][DictEntry.EDEKey] + DictEntry.EDEValue
+                    except KeyError:
+                        EmotionDict[(DictElem.EDType)-1][DictEntry.EDEKey] = DictEntry.EDEValue
+
+                    iteration = iteration + 1
 
         else:
             pass
-            
+
         if curMonth == endMonth and curDay == endDay:
             break
 
@@ -147,24 +141,73 @@ def serverOut(location, startTime, endTime):
         else:
             curDay = curDay + 1
 
-    sortedHappy = sorted(HappyDict.items(), key=operator.itemgetter(1))[0:5]
-    sortedSad = sorted(SadDict.items(), key=operator.itemgetter(1))[0:5]
-    sortedSurprise = sorted(SurpriseDict.items(), key=operator.itemgetter(1))[0:5]
-    sortedAnger = sorted(AngerDict.items(), key=operator.itemgetter(1))[0:5]
+    end_time = time.time()
+    print('time1 ' + str(end_time - start_time))
+
+    start_time = time.time()
+    sortedHappy = sorted(HappyDict.items(), key=operator.itemgetter(1), reverse=True)[0:15]
+    sortedSad = sorted(SadDict.items(), key=operator.itemgetter(1), reverse=True)[0:5]
+    sortedSurprise = sorted(SurpriseDict.items(), key=operator.itemgetter(1), reverse=True)[0:15]
+    sortedAnger = sorted(AngerDict.items(), key=operator.itemgetter(1), reverse=True)[0:15]
+
+    end_time = time.time()
+    print('time2 ' + str(end_time - start_time))
 
     sortedHaTweet = {}
     sortedSaTweet = {}
     sortedSuTweet = {}
     sortedAnTweet = {}
 
+    start_time = time.time()
+
+
+    iteration = 0
     for values in sortedHappy:
-        sortedHaTweet[values[0]] = HappyTweet[values[0]]
+
+        ETList = HappyEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        for ET in ETList:
+            sortedHaTweet[values[0]] = ET.ETText
+            iteration = iteration + 1
+            print(iteration)
+            break
+        if iteration > 4:
+            print('Abroke')
+            break
+    iteration = 0
     for values in sortedSad:
-        sortedSaTweet[values[0]] = SadTweet[values[0]]
+        ETList = SadEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        for ET in ETList:
+            sortedSaTweet[values[0]] = ET.ETText
+            iteration = iteration + 1
+            break
+        if iteration > 4:
+            print('Bbroke')
+            break
+
+    iteration = 0
     for values in sortedSurprise:
-        sortedSuTweet[values[0]] = SurpriseTweet[values[0]]
+        ETList = SurpriseEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        for ET in ETList:
+            sortedSuTweet[values[0]] = ET.ETText
+            iteration = iteration + 1
+            break
+        if iteration > 4:
+            print('Cbroke')
+            break
+
+    iteration = 0
     for values in sortedAnger:
-        sortedAnTweet[values[0]] = AngerTweet[values[0]]
+        ETList = AngerEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        for ET in ETList:
+            sortedAnTweet[values[0]] = ET.ETText
+            iteration = iteration + 1
+            break
+        if iteration > 4:
+            print('Dbroke')
+            break
+
+    end_time = time.time()
+    print('time ' + str(end_time - start_time))
 
     context = {'result':'success'}
     context['Happy'] = Happy
@@ -181,4 +224,5 @@ def serverOut(location, startTime, endTime):
     context['SaTweet'] = sortedSaTweet
     context['SuTweet'] = sortedSuTweet
     context['AnTweet'] = sortedAnTweet
+
     return context
