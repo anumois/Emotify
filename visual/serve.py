@@ -105,7 +105,6 @@ def serverOut(location, startTime, endTime):
     except ObjectDoesNotExist:
         return {'result':'failed', 'msg':'Invalid Location'}
 
-    start_time = time.time()
     while(True):
         EE = getEE(curMonth, curDay, ELL)
 
@@ -141,17 +140,11 @@ def serverOut(location, startTime, endTime):
         else:
             curDay = curDay + 1
 
-    end_time = time.time()
-    print('time1 ' + str(end_time - start_time))
-
-    start_time = time.time()
     sortedHappy = sorted(HappyDict.items(), key=operator.itemgetter(1), reverse=True)[0:15]
     sortedSad = sorted(SadDict.items(), key=operator.itemgetter(1), reverse=True)[0:5]
     sortedSurprise = sorted(SurpriseDict.items(), key=operator.itemgetter(1), reverse=True)[0:15]
     sortedAnger = sorted(AngerDict.items(), key=operator.itemgetter(1), reverse=True)[0:15]
 
-    end_time = time.time()
-    print('time2 ' + str(end_time - start_time))
 
     sortedHaTweet = {}
     sortedSaTweet = {}
@@ -168,10 +161,8 @@ def serverOut(location, startTime, endTime):
         for ET in ETList:
             sortedHaTweet[values[0]] = ET.ETText
             iteration = iteration + 1
-            print(iteration)
             break
         if iteration > 4:
-            print('Abroke')
             break
     iteration = 0
     for values in sortedSad:
@@ -181,7 +172,6 @@ def serverOut(location, startTime, endTime):
             iteration = iteration + 1
             break
         if iteration > 4:
-            print('Bbroke')
             break
 
     iteration = 0
@@ -192,7 +182,6 @@ def serverOut(location, startTime, endTime):
             iteration = iteration + 1
             break
         if iteration > 4:
-            print('Cbroke')
             break
 
     iteration = 0
@@ -203,11 +192,9 @@ def serverOut(location, startTime, endTime):
             iteration = iteration + 1
             break
         if iteration > 4:
-            print('Dbroke')
             break
 
-    end_time = time.time()
-    print('time ' + str(end_time - start_time))
+
 
     context = {'result':'success'}
     context['Happy'] = Happy
