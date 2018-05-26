@@ -6,7 +6,7 @@ def regContext(location, complocation, sOut, scompOut):
         sSurprise = sOut['Surprise']
         sAnger = sOut['Anger']
         sumEmo = sHappy + sSad + sSurprise + sAnger
-        
+
         scompHappy = scompOut['Happy']
         scompSad = scompOut['Sad']
         scompSurprise = scompOut['Surprise']
@@ -91,6 +91,7 @@ def regContext(location, complocation, sOut, scompOut):
 
         context['scompLocation1'] = complocation[0]
         context['scompLocation2'] = complocation[1]
+
         return context
 
     except KeyError:
