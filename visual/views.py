@@ -21,6 +21,7 @@ def index(request):
 
 def display(request, location, complocation, startTime, endTime):
     TimeContext = []
+
     for ETL in EmotifyTimeList.objects.all():
         ETLTuple = str(ETL.ETLMonth) + "월 " + str(ETL.ETLDay) + "일"
         TimeContext.append(ETLTuple)
@@ -30,6 +31,7 @@ def display(request, location, complocation, startTime, endTime):
         sOut = serve.serverOut(location,startTime,endTime)
         context = visualLib.monoregContext(location,sOut)
         context['TimeContext'] = TimeContext
+        context['TimeQuery'] = startTime + ' ~ ' + endTime
         try:
             if context['result'] == 'success':
                 return render(request, 'monodisplay.html', context)
@@ -43,6 +45,7 @@ def display(request, location, complocation, startTime, endTime):
 
         context = visualLib.regContext(location, complocation, sOut, scompOut)
         context['TimeContext'] = TimeContext
+        context['TimeQuery'] = startTime + ' ~ ' + endTime
         try:
             if context['result'] == 'success':
                 return render(request, 'display.html', context)

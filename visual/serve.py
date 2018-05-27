@@ -135,7 +135,7 @@ def serverOut(location, startTime, endTime):
 
     iteration = 0
     for values in sortedHappy:
-        ETList = HappyEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        ETList = SurpriseEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
         innerIter = 0
         for ET in ETList:
             try:
@@ -152,7 +152,7 @@ def serverOut(location, startTime, endTime):
 
     iteration = 0
     for values in sortedSad:
-        ETList = SadEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        ETList = AngerEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
         innerIter = 0
         for ET in ETList:
             try:
@@ -167,7 +167,7 @@ def serverOut(location, startTime, endTime):
             break
     iteration = 0
     for values in sortedSurprise:
-        ETList = SurpriseEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        ETList = SadEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
         innerIter = 0
         for ET in ETList:
             try:
@@ -182,7 +182,7 @@ def serverOut(location, startTime, endTime):
             break
     iteration = 0
     for values in sortedAnger:
-        ETList = AngerEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
+        ETList = HappyEmotifyTweet.objects.filter(ETContainer = ELL, ETKey = values[0]).order_by('?')
         innerIter = 0
         for ET in ETList:
             try:
