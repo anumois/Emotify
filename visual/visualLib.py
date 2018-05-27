@@ -96,3 +96,59 @@ def regContext(location, complocation, sOut, scompOut):
 
     except KeyError:
         return False
+
+def monoregContext(location, sOut):
+    context = {'result': 'success'}
+    try:
+        sHappy = sOut['Happy']
+        sSad = sOut['Sad']
+        sSurprise = sOut['Surprise']
+        sAnger = sOut['Anger']
+        sumEmo = sHappy + sSad + sSurprise + sAnger
+
+        if sumEmo != 0:
+            sHappy = int((float(sHappy) / float(sumEmo)) * 100)
+            sSad = int((float(sSad) / float(sumEmo)) * 100)
+            sSurprise = int((float(sSurprise) / float(sumEmo)) * 100)
+            sAnger = int((float(sAnger) / float(sumEmo)) * 100)
+
+        context['sHappy'] = sHappy
+        context['sSad'] = sSad
+        context['sSurprise'] = sSurprise
+        context['sAnger'] = sAnger
+
+        context['sHaKeyword'] = []
+        for member in sOut['HaKeyword']:
+            try:
+                context['sHaKeyword'].append([member[0], sOut['HaTweet'][member[0]]])
+            except KeyError:
+                pass
+        context['sSaKeyword'] = []
+        for member in sOut['SaKeyword']:
+            try:
+                context['sSaKeyword'].append([member[0],sOut['SaTweet'][member[0]]])
+            except KeyError:
+                pass
+
+        context['sSuKeyword'] = []
+        for member in sOut['SuKeyword']:
+            try:
+                context['sSuKeyword'].append([member[0],sOut['SuTweet'][member[0]]])
+            except KeyError:
+                pass
+
+        context['sAnKeyword'] = []
+        for member in sOut['AnKeyword']:
+            try:
+                context['sAnKeyword'].append([member[0],sOut['AnTweet'][member[0]]])
+            except KeyError:
+                pass
+
+
+        context['sLocation1'] = location[0]
+        context['sLocation2'] = location[1]
+
+        return context
+
+    except KeyError:
+        return False

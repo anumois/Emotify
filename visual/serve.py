@@ -139,9 +139,9 @@ def serverOut(location, startTime, endTime):
         innerIter = 0
         for ET in ETList:
             try:
-                sortedHaTweet[values[0]].append(ET.ETText+ '\n')
+                sortedHaTweet[values[0]].append(str(innerIter + 1)+'. '+ET.ETText+ '\n')
             except KeyError:
-                sortedHaTweet[values[0]] = [ET.ETText+ '\n']
+                sortedHaTweet[values[0]] = [str(innerIter + 1)+'. '+ET.ETText+ '\n']
                 iteration = iteration + 1
             innerIter = innerIter + 1
             if innerIter > 5:
@@ -156,9 +156,9 @@ def serverOut(location, startTime, endTime):
         innerIter = 0
         for ET in ETList:
             try:
-                sortedSaTweet[values[0]].append(ET.ETText+ '\n')
+                sortedSaTweet[values[0]].append(str(innerIter + 1)+'. '+ET.ETText+ '\n')
             except KeyError:
-                sortedSaTweet[values[0]] = [ET.ETText+ '\n']
+                sortedSaTweet[values[0]] = [str(innerIter + 1)+'. '+ET.ETText+ '\n']
                 iteration = iteration + 1
             innerIter = innerIter + 1
             if innerIter > 5:
@@ -171,9 +171,9 @@ def serverOut(location, startTime, endTime):
         innerIter = 0
         for ET in ETList:
             try:
-                sortedSuTweet[values[0]].append(ET.ETText + '\n')
+                sortedSuTweet[values[0]].append(str(innerIter + 1)+'. ' + ET.ETText + '\n')
             except KeyError:
-                sortedSuTweet[values[0]] = [ET.ETText + '\n']
+                sortedSuTweet[values[0]] = [str(innerIter + 1)+'. ' + ET.ETText + '\n']
                 iteration = iteration + 1
             innerIter = innerIter + 1
             if innerIter > 5:
@@ -186,9 +186,9 @@ def serverOut(location, startTime, endTime):
         innerIter = 0
         for ET in ETList:
             try:
-                sortedAnTweet[values[0]].append(ET.ETText + '\n')
+                sortedAnTweet[values[0]].append(str(innerIter + 1)+'. '+ET.ETText + '\n')
             except KeyError:
-                sortedAnTweet[values[0]] = [ET.ETText + '\n']
+                sortedAnTweet[values[0]] = [str(innerIter + 1)+'. '+ET.ETText + '\n']
                 iteration = iteration + 1
             innerIter = innerIter + 1
             if innerIter > 5:
