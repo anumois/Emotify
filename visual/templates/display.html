@@ -82,7 +82,6 @@
                 </select>
             </div>
             <div class="form-label-group mb-2">
-              <label for="endTime"></label>
                 <select class="form-control" id="endTime" name="endTime">
                   {% for timeVal in TimeContext %}
                   <option> {{ timeVal }}</option>
@@ -97,12 +96,13 @@
 
         <button type="submit" class="btn btn-primary btn-block btn-lg">검색</button>
       </form>
+
       <div class="row">
-        <div class="col-md-6 my-auto">
+        <div class="col-md-6 my-auto text-center">
           <div class="Display-Navigator px-5 py-5 mx-auto">
             <h2 class="Display-LocationTxt"> {{ scompLocation1 }} {{ scompLocation2 }}</h2>
           </div>
-          <a class="btn btn-primary" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#scompHappyKeyword"> 행복/Happy, Joy</a>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#scompHappyKeyword"> 행복/Happy, Joy</a><br>
 
           <div class="collapse" id="scompHappyKeyword">
             <div class="card card-body">
@@ -116,14 +116,8 @@
             </div>
           </div>
 
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompHappy }}%" aria-valuenow="{{ scompHappy }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#scompSadKeyword"> 슬픔/Sad</a>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompSad }}%" aria-valuenow="{{ scompSad }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" data-toggle="collapse" href="#scompSadKeyword"> 슬픔/Sad</a><br>
 
           <div class="collapse" id="scompSadKeyword">
             <div class="card card-body">
@@ -136,10 +130,7 @@
             </div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#scompSurpriseKeyword"> 놀람/Astonishment</a>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompSurprise }}%" aria-valuenow="{{ scompSurprise }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" data-toggle="collapse" href="#scompSurpriseKeyword"> 놀람/Astonishment</a><br>
 
           <div class="collapse" id="scompSurpriseKeyword">
             <div class="card card-body">
@@ -152,10 +143,7 @@
             </div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#scompAngerKeyword"> 분노/Anger,Disgust</a>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ scompAnger }}%" aria-valuenow="{{ scompAnger }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" data-toggle="collapse" href="#scompAngerKeyword"> 분노/Anger,Disgust</a><br>
 
           <div class="collapse" id="scompAngerKeyword">
             <div class="card card-body">
@@ -167,13 +155,16 @@
               {% endfor %}
             </div>
           </div>
+
+          <div id="pieComp"></div>
+
         </div>
 
-        <div class="col-md-6 my-auto">
+        <div class="col-md-6 my-auto text-center">
           <div class="Display-Navigator px-5 py-5 mx-auto">
             <h2 class="Display-LocationTxt"> {{ sLocation1 }} {{ sLocation2 }}</h2>
           </div>
-          <a class="btn btn-primary" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#sHappyKeyword"> 행복/Happy,Joy</a>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" aria-controls="HappyKeyword" data-toggle="collapse" href="#sHappyKeyword"> 행복/Happy,Joy</a><br>
 
           <div class="collapse" id="sHappyKeyword">
             <div class="card card-body">
@@ -187,14 +178,8 @@
             </div>
           </div>
 
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sHappy }}%" aria-valuenow="{{ scompHappy }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#sSadKeyword"> 슬픔/Sad</a>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sSad }}%" aria-valuenow="{{ sSad }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" data-toggle="collapse" href="#sSadKeyword"> 슬픔/Sad</a><br>
 
           <div class="collapse" id="sSadKeyword">
             <div class="card card-body">
@@ -207,10 +192,7 @@
             </div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#sSurpriseKeyword"> 놀람/Astonishment</a>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sSurprise }}%" aria-valuenow="{{ sSurprise }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" data-toggle="collapse" href="#sSurpriseKeyword"> 놀람/Astonishment</a><br>
 
           <div class="collapse" id="sSurpriseKeyword">
             <div class="card card-body">
@@ -223,10 +205,7 @@
             </div>
           </div>
 
-          <a class="btn btn-primary" role="button" aria-expanded="false" data-toggle="collapse" href="#sAngerKeyword"> 분노/Anger,Disgust</a>
-          <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ sAnger }}%" aria-valuenow="{{ sAnger }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="btn btn-primary btn-size" role="button" aria-expanded="false" data-toggle="collapse" href="#sAngerKeyword"> 분노/Anger,Disgust</a><br>
 
           <div class="collapse" id="sAngerKeyword">
             <div class="card card-body">
@@ -239,6 +218,7 @@
             </div>
           </div>
 
+          <div id="pieOrig"></div>
 
         </div>
       </div>
@@ -250,7 +230,43 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChartComp);
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['행복/Happy,Joy', {{ sHappy }} ],
+          ['슬픔/Sadness', {{ sSad }}],
+          ['놀람/Astonishment', {{ sSurprise }}],
+          ['분노/Anger,Disgust', {{ sAnger }}]
+        ]);
+
+          // Optional; add a title and set the width and height of the chart
+          var options = {'width':400, 'height':300};
+
+          // Display the chart inside the <div> element with id="piechart"
+          var chart = new google.visualization.PieChart(document.getElementById('pieComp'));
+          chart.draw(data, options);
+      }
+      function drawChartComp() {
+          var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['행복/Happy,Joy', {{ scompHappy }} ],
+          ['슬픔/Sadness', {{ scompSad }}],
+          ['놀람/Astonishment', {{ scompSurprise }}],
+          ['분노/Anger,Disgust', {{ scompAnger }}]
+        ]);
+
+          // Optional; add a title and set the width and height of the chart
+          var options = {'width':400, 'height':300};
+
+          // Display the chart inside the <div> element with id="piechart"
+          var chart = new google.visualization.PieChart(document.getElementById('pieOrig'));
+          chart.draw(data, options);
+      }
       var locationDict = {
         '강원' : ['도지사', '강릉', '고성', '동해', '삼척', '속초', '양구', '양양', '영월', '원주', '인제', '정선', '철원', '춘천', '태백', '평창', '홍천', '화천', '횡성'],
         '경기' : ['도지사', '가평', '고양', '과천', '광명', '광주', '구리', '군포', '김포', '남양주', '동두천', '부천', '성남', '수원', '시흥', '안산', '안성', '안양', '양주', '양평', '여주', '연천', '오산', '용인', '의왕', '의정부', '이천', '파주', '평택', '포천', '하남', '화성'],
