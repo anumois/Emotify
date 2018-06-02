@@ -248,7 +248,7 @@
           var options = {'width':400, 'height':300};
 
           // Display the chart inside the <div> element with id="piechart"
-          var chart = new google.visualization.PieChart(document.getElementById('pieComp'));
+          var chart = new google.visualization.PieChart(document.getElementById('pieOrig'));
           chart.draw(data, options);
       }
       function drawChartComp() {
@@ -264,7 +264,7 @@
           var options = {'width':400, 'height':300};
 
           // Display the chart inside the <div> element with id="piechart"
-          var chart = new google.visualization.PieChart(document.getElementById('pieOrig'));
+          var chart = new google.visualization.PieChart(document.getElementById('pieComp'));
           chart.draw(data, options);
       }
       var locationDict = {

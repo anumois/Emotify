@@ -59,7 +59,7 @@ def getEE(curMonth, curDay, ELL):
 def serverOut(location, startTime, endTime):
     [(startMonth,startDay), (endMonth,endDay)] = parseStartEnd(startTime,endTime)
     (Location1, Location2) = location
-
+    
     if startMonth == 0:
         return {'result':'failed', 'msg':'Invalid Date'}
 
@@ -95,7 +95,7 @@ def serverOut(location, startTime, endTime):
             Anger = Anger + EE.EEAnger
             for DictElem in EmotifyDictionary.objects.filter(EDElement = EE):
                 iteration = 0
-                for DictEntry in EmotifyDictEntry.objects.filter(EDEContainer = DictElem).order_by('EDEValue').reverse():
+                for DictEntry in EmotifyDictEntry.objects.filter(EDEContainer = DictElem):
                     if iteration == 10:
                         break
                     try:

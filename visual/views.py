@@ -29,6 +29,8 @@ def display(request, location, complocation, startTime, endTime):
 
     if location[0] == complocation[0] and location[1] == complocation[1]:
         sOut = serve.serverOut(location,startTime,endTime)
+        if sOut['result'] == 'failed':
+            return notFound(request)
         context = visualLib.monoregContext(location,sOut)
         context['TimeContext'] = TimeContext
         context['TimeQuery'] = startTime + ' ~ ' + endTime
