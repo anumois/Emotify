@@ -84,7 +84,7 @@
 
             </div>
 
-            <div class="form-label-group mb-2">              
+            <div class="form-label-group mb-2">
                 <select class="form-control" id="endTime" name="endTime">
                   {% for timeVal in TimeContext %}
                   <option> {{ timeVal }}</option>
@@ -107,7 +107,7 @@
           <div class="collapse" id="sHappyKeyword">
             <div class="card card-body">
               {% for keyword in sHaKeyword %}
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %} {{ tweet }} {% endfor %}">
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %}{{ tweet }}{% endfor %}">
                 {{ keyword.0 }}
               </button>
               <br>
@@ -121,7 +121,7 @@
           <div class="collapse" id="sSadKeyword">
             <div class="card card-body">
               {% for keyword in sSaKeyword %}
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %} {{ tweet }} {% endfor %}">
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %}{{ tweet }}{% endfor %}">
                 {{ keyword.0}}
               </button>
                 <br>
@@ -134,7 +134,7 @@
           <div class="collapse" id="sSurpriseKeyword">
             <div class="card card-body">
               {% for keyword in sSuKeyword %}
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %} {{ tweet }} {% endfor %}">
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %}{{ tweet }}{% endfor %}">
                 {{ keyword.0 }}
               </button>
                 <br>
@@ -147,7 +147,7 @@
           <div class="collapse" id="sAngerKeyword">
             <div class="card card-body">
               {% for keyword in sAnKeyword %}
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %} {{ tweet }} {% endfor %}">
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="{% for tweet in keyword.1 %}{{ tweet }}{% endfor %}">
                 {{ keyword.0 }}
               </button>
                 <br>

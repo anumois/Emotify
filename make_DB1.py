@@ -63,6 +63,11 @@ dbDate = [[(4, 16)],
               [(5, 27)],
               [(5, 28)],
               [(5, 29)],
+              [(5, 30)],
+              [(5, 31)],
+              [(6, 1)],
+              [(6, 2)],
+              [(6, 3)],
               ]
 
 import datetime
@@ -153,6 +158,14 @@ for keyword in keywords:
     fear_tweets = {}
     happy_tweets = {}
     sad_tweets = {}
+    anger_tweets_no_name = {}
+    fear_tweets_no_name = {}
+    happy_tweets_no_name = {}
+    sad_tweets_no_name = {}
+    anger_keys = []
+    fear_keys = []
+    happy_keys = []
+    sad_keys = []
 
     keyword_lst = keyword.split('"')
     lst_name = keyword_lst[-2][1:]
@@ -201,6 +214,11 @@ for keyword in keywords:
                   [(5, 27)],
                   [(5, 28)],
                   [(5, 29)],
+                  [(5, 30)],
+                  [(5, 31)],
+                  [(6, 1)],
+                  [(6, 2)],
+                  [(6, 3)],
                   ]
     fear_date = [[(4, 16)],
                   [(4, 17)],
@@ -246,6 +264,11 @@ for keyword in keywords:
                   [(5, 27)],
                   [(5, 28)],
                   [(5, 29)],
+                  [(5, 30)],
+                  [(5, 31)],
+                  [(6, 1)],
+                  [(6, 2)],
+                  [(6, 3)],
                   ]
     happy_date = [[(4, 16)],
                   [(4, 17)],
@@ -291,6 +314,11 @@ for keyword in keywords:
                   [(5, 27)],
                   [(5, 28)],
                   [(5, 29)],
+                  [(5, 30)],
+                  [(5, 31)],
+                  [(6, 1)],
+                  [(6, 2)],
+                  [(6, 3)],
                   ]
     sad_date = [[(4, 16)],
                   [(4, 17)],
@@ -336,6 +364,11 @@ for keyword in keywords:
                   [(5, 27)],
                   [(5, 28)],
                   [(5, 29)],
+                  [(5, 30)],
+                  [(5, 31)],
+                  [(6, 1)],
+                  [(6, 2)],
+                  [(6, 3)],
                   ]
 
     name = keyword.split('"')[1]
@@ -409,6 +442,7 @@ for keyword in keywords:
     n_dates = len(anger_date)
     for i in range(n_dates):
         EE = cEmotifyElement()
+
         day = anger_date[i]
         lines = day[1:]
         if len(lines) > 0:
@@ -419,14 +453,22 @@ for keyword in keywords:
                 words = twitter.nouns(text)
                 for word in words:
                     if len(word) > 1:
+                        if not word in anger_keys:
+                            anger_keys.append(word)
                         count = EE.AngerKeyword.get(word, 0)
                         EE.addAnger(word, count + n_tweets)
                         lst = anger_tweets.get(word, [])
-                        if len(lst) < 5:
-                            if lst_name in text:
+                        lst_no_name = anger_tweets_no_name.get(word, [])
+                        if lst_name in text:
+                            if len(lst) < 5:
                                 if not text in lst:
                                     lst.append(text)
-                        anger_tweets[word] = lst
+                                    anger_tweets[word] = lst
+                        else:
+                            if len(lst_no_name) < 5:
+                                if not text in lst_no_name:
+                                    lst_no_name.append(text)
+                                    anger_tweets_no_name[word] = lst_no_name
 
         day = fear_date[i]
         lines = day[1:]
@@ -438,14 +480,22 @@ for keyword in keywords:
                 words = twitter.nouns(text)
                 for word in words:
                     if len(word) > 1:
+                        if not word in fear_keys:
+                            fear_keys.append(word)
                         count = EE.SurpriseKeyword.get(word, 0)
                         EE.addSurprise(word, count + n_tweets)
                         lst = fear_tweets.get(word, [])
-                        if len(lst) < 5:
-                            if lst_name in text:
+                        lst_no_name = fear_tweets_no_name.get(word, [])
+                        if lst_name in text:
+                            if len(lst) < 5:
                                 if not text in lst:
                                     lst.append(text)
-                        fear_tweets[word] = lst
+                                    fear_tweets[word] = lst
+                        else:
+                            if len(lst_no_name) < 5:
+                                if not text in lst_no_name:
+                                    lst_no_name.append(text)
+                                    fear_tweets_no_name[word] = lst_no_name
 
         day = happy_date[i]
         lines = day[1:]
@@ -457,14 +507,22 @@ for keyword in keywords:
                 words = twitter.nouns(text)
                 for word in words:
                     if len(word) > 1:
+                        if not word in happy_keys:
+                            happy_keys.append(word)
                         count = EE.HappyKeyword.get(word, 0)
                         EE.addHappy(word, count + n_tweets)
                         lst = happy_tweets.get(word, [])
-                        if len(lst) < 5:
-                            if lst_name in text:
+                        lst_no_name = happy_tweets_no_name.get(word, [])
+                        if lst_name in text:
+                            if len(lst) < 5:
                                 if not text in lst:
                                     lst.append(text)
-                        happy_tweets[word] = lst
+                                    happy_tweets[word] = lst
+                        else:
+                            if len(lst_no_name) < 5:
+                                if not text in lst_no_name:
+                                    lst_no_name.append(text)
+                                    happy_tweets_no_name[word] = lst_no_name
 
         day = sad_date[i]
         lines = day[1:]
@@ -476,14 +534,22 @@ for keyword in keywords:
                 words = twitter.nouns(text)
                 for word in words:
                     if len(word) > 1:
+                        if not word in sad_keys:
+                            sad_keys.append(word)
                         count = EE.SadKeyword.get(word, 0)
                         EE.addSad(word, count + n_tweets)
                         lst = sad_tweets.get(word, [])
-                        if len(lst) < 5:
-                            if lst_name in text:
+                        lst_no_name = sad_tweets_no_name.get(word, [])
+                        if lst_name in text:
+                            if len(lst) < 5:
                                 if not text in lst:
                                     lst.append(text)
-                        sad_tweets[word] = lst
+                                    sad_tweets[word] = lst
+                        else:
+                            if len(lst_no_name) < 5:
+                                if not text in lst_no_name:
+                                    lst_no_name.append(text)
+                                    sad_tweets_no_name[word] = lst_no_name
 
         for pronoun in pronouns:
             if pronoun in EE.AngerKeyword:
@@ -575,6 +641,43 @@ for keyword in keywords:
             del EE.SadKeyword[loc2]
 
         ETL.addElement(EE)
+
+    for key in anger_keys:
+        lst = anger_tweets.get(key, [])
+        lst_no_name = anger_tweets_no_name.get(key, [])
+        if len(lst) < 5:
+            for text in lst_no_name:
+                lst.append(text)
+                if len(lst) == 5:
+                    break
+            anger_tweets[key] = lst
+    for key in fear_keys:
+        lst = fear_tweets.get(key, [])
+        lst_no_name = fear_tweets_no_name.get(key, [])
+        if len(lst) < 5:
+            for text in lst_no_name:
+                lst.append(text)
+                if len(lst) == 5:
+                    break
+            fear_tweets[key] = lst
+    for key in happy_keys:
+        lst = happy_tweets.get(key, [])
+        lst_no_name = happy_tweets_no_name.get(key, [])
+        if len(lst) < 5:
+            for text in lst_no_name:
+                lst.append(text)
+                if len(lst) == 5:
+                    break
+            happy_tweets[key] = lst
+    for key in sad_keys:
+        lst = sad_tweets.get(key, [])
+        lst_no_name = sad_tweets_no_name.get(key, [])
+        if len(lst) < 5:
+            for text in lst_no_name:
+                lst.append(text)
+                if len(lst) == 5:
+                    break
+            sad_tweets[key] = lst
 
     for pronoun in pronouns:
         if pronoun in anger_tweets:
@@ -726,12 +829,12 @@ for Element in emotify.EmotifyList:
         SaDict = EmotifyDictionary(EDName = (Element[0] + Element[1]) + 'Sad',EDType = 2, EDElement = EE)
         SuDict = EmotifyDictionary(EDName = (Element[0] + Element[1]) + 'Surprise',EDType = 3, EDElement = EE)
         AnDict = EmotifyDictionary(EDName = (Element[0] + Element[1]) + 'Angry',EDType = 4, EDElement = EE)
-        
+
         HaDict.save()
         SaDict.save()
         SuDict.save()
         AnDict.save()
-        
+
         sorted_HaKeyword = sorted(eE.HappyKeyword.items(), key=operator.itemgetter(1), reverse = True)
         sorted_SaKeyword = sorted(eE.SadKeyword.items(), key=operator.itemgetter(1), reverse = True)
         sorted_SuKeyword = sorted(eE.SurpriseKeyword.items(), key=operator.itemgetter(1), reverse = True)
@@ -748,6 +851,6 @@ for Element in emotify.EmotifyList:
                 newSuDictVal.save()
             if len(sorted_AnKeyword) > i:
                 newAnDictVal = EmotifyDictEntry(EDEKey = sorted_AnKeyword[i][0], EDEValue = sorted_AnKeyword[i][1], EDEContainer = AnDict)
-                newAnDictVal.save() 
-            
+                newAnDictVal.save()
+
         iteration = iteration + 1

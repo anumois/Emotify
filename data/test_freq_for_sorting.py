@@ -147,6 +147,14 @@ for keyword in keywords:
                   [(5, 19)],
                   [(5, 20)],
                   [(5, 21)],
+                  [(5, 22)],
+                  [(5, 23)],
+                  [(5, 24)],
+                  [(5, 25)],
+                  [(5, 26)],
+                  [(5, 27)],
+                  [(5, 28)],
+                  [(5, 29)],
                   ]
     fear_date = [[(4, 16)],
                   [(4, 17)],
@@ -184,6 +192,14 @@ for keyword in keywords:
                   [(5, 19)],
                   [(5, 20)],
                   [(5, 21)],
+                  [(5, 22)],
+                  [(5, 23)],
+                  [(5, 24)],
+                  [(5, 25)],
+                  [(5, 26)],
+                  [(5, 27)],
+                  [(5, 28)],
+                  [(5, 29)],
                   ]
     happy_date = [[(4, 16)],
                   [(4, 17)],
@@ -221,6 +237,14 @@ for keyword in keywords:
                   [(5, 19)],
                   [(5, 20)],
                   [(5, 21)],
+                  [(5, 22)],
+                  [(5, 23)],
+                  [(5, 24)],
+                  [(5, 25)],
+                  [(5, 26)],
+                  [(5, 27)],
+                  [(5, 28)],
+                  [(5, 29)],
                   ]
     sad_date = [[(4, 16)],
                   [(4, 17)],
@@ -258,6 +282,14 @@ for keyword in keywords:
                   [(5, 19)],
                   [(5, 20)],
                   [(5, 21)],
+                  [(5, 22)],
+                  [(5, 23)],
+                  [(5, 24)],
+                  [(5, 25)],
+                  [(5, 26)],
+                  [(5, 27)],
+                  [(5, 28)],
+                  [(5, 29)],
                   ]
     
     name = keyword.split('"')[1]
@@ -624,30 +656,40 @@ date = [[(4, 16)],
                   [(5, 19)],
                   [(5, 20)],
                   [(5, 21)],
+                  [(5, 22)],
+                  [(5, 23)],
+                  [(5, 24)],
+                  [(5, 25)],
+                  [(5, 26)],
+                  [(5, 27)],
+                  [(5, 28)],
+                  [(5, 29)],
                   ]
 
-total_freq = Counter({})
-i = 0
-p_etl = emotify.EmotifyList[157][2].EmotifyTimeList
-for p_ee in p_etl:
-    total_freq = Counter(total_freq) + Counter(p_ee.AngerKeyword)
-    sorted_freq = sorted(p_ee.AngerKeyword.items(), key=operator.itemgetter(1), reverse = True)
-    
-    fname = '대통령_Anger_' + str(date[i][0][0]) + str(date[i][0][1]) + '.txt'
-    anger_frequency = open(fname, 'w', -1, "utf-8")
-
-    for t in sorted_freq:
-        anger_frequency.write(t[0] + '\t' + str(t[1]) + '\n')
-    
-    anger_frequency.close()
-    i = i + 1
-
-sorted_freq = sorted(total_freq.items(), key=operator.itemgetter(1), reverse = True)
-    
-fname = '대통령_Anger_total.txt'
-anger_frequency = open(fname, 'w', -1, "utf-8")
-
-for t in sorted_freq:
-    anger_frequency.write(t[0] + '\t' + str(t[1]) + '\n')
-    
-anger_frequency.close()
+for tp in emotify.EmotifyList:
+    if tp[0] == '대전':
+        total_freq = Counter({})
+        i = 0
+        p_etl = tp[2].EmotifyTimeList
+        for p_ee in p_etl:
+            total_freq = Counter(total_freq) + Counter(p_ee.AngerKeyword)
+            sorted_freq = sorted(p_ee.AngerKeyword.items(), key=operator.itemgetter(1), reverse = True)
+            
+            fname = tp[0] + '_Anger_' + str(date[i][0][0]) + str(date[i][0][1]) + '.txt'
+            anger_frequency = open(fname, 'w', -1, "utf-8")
+        
+            for t in sorted_freq:
+                anger_frequency.write(t[0] + '\t' + str(t[1]) + '\n')
+            
+            anger_frequency.close()
+            i = i + 1
+        
+        sorted_freq = sorted(total_freq.items(), key=operator.itemgetter(1), reverse = True)
+            
+        fname = tp[0] + '_Anger_total.txt'
+        anger_frequency = open(fname, 'w', -1, "utf-8")
+        
+        for t in sorted_freq:
+            anger_frequency.write(t[0] + '\t' + str(t[1]) + '\n')
+            
+        anger_frequency.close()
